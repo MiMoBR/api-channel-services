@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mimobr.blogtwo.model.Content;
-import com.mimobr.blogtwo.model.User;
 import com.mimobr.blogtwo.repository.ContentRepository;
 
 @RestController
@@ -47,10 +46,10 @@ public class ContentResources {
 		return content;
 	}
 	
-	@PostMapping("/validateLogin")
-	public User validateLogin(@RequestBody @Validated User user ) {
-		
-		return new User();
-	}
+//	@PostMapping("/validateLogin")
+//	public User validateLogin(@RequestBody @Validated User user ) {
+//		
+//		return new User();
+//	}
 
 }

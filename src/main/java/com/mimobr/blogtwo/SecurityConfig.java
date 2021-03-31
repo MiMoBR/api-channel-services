@@ -13,30 +13,35 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.csrf().disable().authorizeRequests()
+	    .antMatchers("/api/postContent/**").authenticated()
+	    .antMatchers("/api/deleteByIdContent/**").authenticated()
+	    .antMatchers("/api/updateAPost/**").authenticated()
+	    .antMatchers("/api/getList/**").permitAll()
+	    .antMatchers("/api/validateLogin/**").permitAll();
+		
+	}
+	
 //	@Override
 //	protected void configure(HttpSecurity http) throws Exception {
-//		http.csrf().disable().authorizeRequests()
-//	    .antMatchers("/api/postContent/**").authenticated()
-//	    .antMatchers("/api/deleteByIdContent/**").authenticated()
-//	    .antMatchers("/api/updateAPost/**").authenticated()
-//	    .antMatchers("/api/getList/**").permitAll()
-//	    .antMatchers("/api/validateLogin/**").permitAll();
-//		
+//		http.authorizeRequests()
+//			.antMatchers(antPatterns)
 //	}
-	
-	
+//	
 	//@Autowired
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {/*http://localhost:8080/*/
-		auth.inMemoryAuthentication()
-		.withUser("juan")
-		.password("123")
-		.roles("USER");
-	}
+//	@Override
+//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {/*http://localhost:8080/*/
+//		auth.inMemoryAuthentication()
+//		.withUser("juan")
+//		.password("123")
+//		.roles("USER");
+//	}
 
-	@Bean
-	public PasswordEncoder getPasswordEncoder(){
-		return NoOpPasswordEncoder.getInstance();
-	}
+//	@Bean
+//	public PasswordEncoder getPasswordEncoder(){
+//		return NoOpPasswordEncoder.getInstance();
+//	}
 }
 
